@@ -6,16 +6,38 @@
 
 <div id="NavDrawer" class="drawer drawer--left">
   <div class="drawer__inner">
-    <form action="{{ routes.search_url }}" method="get" class="drawer__search" role="search">
-      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}" class="drawer__search-input">
-
-      <button type="submit" class="text-link drawer__search-submit">
-        {% include 'icon-search' %}
-        <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
-      </button>
-    </form>
     <ul class="drawer__nav">
-      {% for link in linklists[section.settings.main_linklist].links %}
+
+      <li class="site-nav__item{% if link.active %} site-nav--active{% endif %}">
+        <a href="/" class="site-nav__link mobile"{% if link.active %} aria-current="page"{% endif %}>
+          {% include 'Home' %}        
+          Home
+        </a>
+      </li>
+      <li class="site-nav__item{% if link.active %} site-nav--active{% endif %}">
+        <a href="{{ routes.cart_url }}" class="site-nav__link mobile"{% if link.active %} aria-current="page"{% endif %}>
+          {% include 'icon-greyCart' %}
+          Cart
+          <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+          <span class="site-header__cart-indicator {% if cart.item_count == 0 %}hide{% endif %}"></span>
+        </a>
+      </li>
+
+      <li class="site-nav__item{% if link.active %} site-nav--active{% endif %}">
+        <a href="{{ routes.cart_url }}" class="site-nav__link mobile"{% if link.active %} aria-current="page"{% endif %}>
+          {% include 'icon-offer' %}        
+          Offer
+        </a>
+      </li>
+
+      <li class="site-nav__item{% if link.active %} site-nav--active{% endif %}">
+        <a href="{{ routes.cart_url }}" class="site-nav__link mobile"{% if link.active %} aria-current="page"{% endif %}>
+          {% include 'icon-user' %}        
+          Account
+        </a>
+      </li>
+
+      <!-- {% for link in linklists[section.settings.main_linklist].links %}
         {% assign child_list_handle = link.title | handleize %}
 
         {% if link.links != blank %}
@@ -46,15 +68,19 @@
           </li>
         {% else %}
           <li class="drawer__nav-item">
+
+
             <a href="{{ link.url }}"
               class="drawer__nav-link drawer__nav-link--top-level"
               {% if link.active %} aria-current="page"{% endif %}
             >
               {{ link.title }}
             </a>
+
+
           </li>
         {% endif %}
-      {% endfor %}
+      {% endfor %} -->
 
       {% if shop.customer_accounts_enabled %}
         {% if customer %}
@@ -94,33 +120,68 @@
           <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
         </button>
       </div>
-      <div class="grid__item small--one-half medium-up--two-thirds small--text-center">
-        {% if request.page_type == 'index' %}
-          <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
-        {% else %}
-          <div class="site-header__logo h1" itemscope itemtype="http://schema.org/Organization">
-        {% endif %}
-          {% if section.settings.logo != blank %}
-            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-            <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-link">
-              <img src="{{ section.settings.logo | img_url: image_size }}"
-                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                   alt="{{ section.settings.logo.alt | default: shop.name }}"
-                   itemprop="logo">
-            </a>
-          {% else %}
-            {% assign shop_name_length = shop.name.size %}
-            <a href="{{ routes.root_url }}" itemprop="url" {% if shop_name_length > 10 %} class="site-header__shop-name--small"{% endif %}>{{ shop.name }}</a>
-          {% endif %}
-        {% if request.page_type == 'index' %}
-          </h1>
-        {% else %}
-          </div>
-        {% endif %}
+      <div class="grid__item small--one-half medium-up--two-thirds small--text-center one-half">
+        <form action="" class="language-current__form">      
+          <select name="language-picker-select" class="language-picker-select">
+            <option lang="ru" value="russian">RU</option>
+            <option lang="en" value="english" selected>EN</option>
+          </select>
+          <select name="curency-picker-select" class="curency-picker-select">
+            <option lang="ru" value="rur">RUR</option>
+            <option lang="en" value="usd" selected>USD</option>
+          </select>
+        </form>     
       </div>
 
-      <div class="grid__item small--one-quarter medium-up--one-third text-right">
+      <!-- Mobile header -->
+      <!-- Search form for mobile -->
+      <div class="header__mobile">
+        <form action="{{ routes.search_url }}" method="get" class="drawer__search" role="search">    
+          <button type="submit" class="text-link drawer__search-submit">
+            {% include 'icon-search-mobile' %}
+            <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+          <input type="search" name="q" placeholder="{{ 'Search Product' }}" class="drawer__search-input">
+
+        </form>
+
+        <div class="header__mobile__items">
+          <a href="{{ routes.cart_url }}">
+            {% include 'icon-love' %}
+          </a>
+          <a href="{{ routes.cart_url }}">
+            {% include 'icon-notification' %}
+            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+            <span class="site-header__cart-indicator {% if cart.item_count == 0 %}hide{% endif %}"></span>
+          </a>
+        </div>
+      </div>
+
+      
+
+
+      <div class="grid__item small--one-quarter medium-up--one-third text-right one-quarter">
         <div id="SiteNavSearchCart" class="site-header__search-cart-wrapper">
+
+          <a href="{{  }}" class="site-header__link site-header__myProfile">
+            {% include 'icon-profile' %}
+            My profile
+          </a>
+
+          <a href="{{ routes.cart_url }}" class="site-header__link site-header__cart">
+            {% include 'icon-cart' %}
+            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+            <span class="site-header__cart-indicator {% if cart.item_count == 0 %}hide{% endif %}"></span>
+          </a>
+
+          <a href="{{  }}" class="site-header__link site-header__items">
+            Items
+          </a>
+
+          <a href="{{  }}" class="site-header__link site-header__total">$0.00
+
+          </a>
+
           <form action="{{ routes.search_url }}" method="get" class="site-header__search small--hide" role="search">
             {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
               <label for="SiteNavSearch" class="visually-hidden">{{ 'general.search.placeholder' | t }}</label>
@@ -131,12 +192,6 @@
               <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
             </button>
           </form>
-
-          <a href="{{ routes.cart_url }}" class="site-header__link site-header__cart">
-            {% include 'icon-cart' %}
-            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-            <span class="site-header__cart-indicator {% if cart.item_count == 0 %}hide{% endif %}"></span>
-          </a>
         </div>
       </div>
     </div>
@@ -147,12 +202,37 @@
       <nav class="nav-bar small--hide" role="navigation" id="StickyNav">
         <div class="page-width">
           <div class="grid grid--table">
+            <div class="grid__item small--one-half medium-up--two-thirds small--text-center">
+              {% if request.page_type == 'index' %}
+                <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+              {% else %}
+                <div class="site-header__logo h1" itemscope itemtype="http://schema.org/Organization">
+              {% endif %}
+                {% if section.settings.logo != blank %}
+                  {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+                  <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-link">
+                    <img src="{{ section.settings.logo | img_url: image_size }}"
+                         srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                         alt="{{ section.settings.logo.alt | default: shop.name }}"
+                         itemprop="logo">
+                  </a>
+                {% else %}
+                  {% assign shop_name_length = shop.name.size %}
+                  <a href="{{ routes.root_url }}" itemprop="url" {% if shop_name_length > 10 %} class="site-header__shop-name--small"{% endif %}>{{ shop.name }}</a>
+                {% endif %}
+              {% if request.page_type == 'index' %}
+                </h1>
+              {% else %}
+                </div>
+              {% endif %}
+            </div>
+
             <div class="grid__item {% if shop.customer_accounts_enabled %}four-fifths{% else%}seven-eighths{% endif %}" id="SiteNavParent">
-              <button type="button" class="hide text-link site-nav__link site-nav__link--compressed js-drawer-open-left" id="SiteNavCompressed">
+              <!-- <button type="button" class="hide text-link site-nav__link site-nav__link--compressed js-drawer-open-left" id="SiteNavCompressed">
                 {% include 'icon-hamburger' %}
                 <span class="site-nav__link-menu-label">{{ 'general.drawers.menu' | t }}</span>
                 <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
-              </button>
+              </button> -->
               <ul class="site-nav list--inline" id="SiteNav">
                 {% for link in linklists[section.settings.main_linklist].links %}
                   {% assign child_list_handle = link.title | handleize %}
@@ -198,7 +278,7 @@
                 {% endfor %}
               </ul>
             </div>
-            <div class="grid__item {% if shop.customer_accounts_enabled %}one-fifth{% else%}one-eighth{% endif %} text-right">
+            <!-- <div class="grid__item {% if shop.customer_accounts_enabled %}one-fifth{% else%}one-eighth{% endif %} text-right">
               <div class="sticky-only" id="StickyNavSearchCart"></div>
               {% if shop.customer_accounts_enabled %}
                 <div class="customer-login-links sticky-hidden">
@@ -212,7 +292,7 @@
                   {% endif %}
                 </div>
               {% endif %}
-            </div>
+            </div> -->
           </div>
         </div>
       </nav>
