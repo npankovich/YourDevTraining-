@@ -2451,6 +2451,8 @@ theme.headerNav = (function() {
     var parentWidth = $(selectors.siteNavParent).width();
     var hideClass = 'hide';
 
+    
+
     // Set height on nav-bar wrapper so when fixed, doesn't break layout
     $(selectors.stickyNavWrapper).height($(selectors.stickyNav).height());
 
