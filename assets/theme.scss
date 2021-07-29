@@ -228,52 +228,52 @@ $grid-breakpoint-has-push: ($medium-up);
 /*================ Color Variables ================*/
 
 // Button colors
-$color-btn-primary: {{ settings.color_button_bg }};
+$color-btn-primary: #006eff;
 $color-btn-primary-hover: adaptive-color($color-btn-primary, 10%);
 $color-btn-primary-active: adaptive-color($color-btn-primary-hover, 10%);
-$color-btn-primary-text: {{ settings.color_button_text }};
+$color-btn-primary-text: #fff;
 
-$color-btn-secondary: {{ settings.color_footer_bg }};
+$color-btn-secondary: #030303;
 $color-btn-secondary-hover: adaptive-color($color-btn-secondary, 5%);
 $color-btn-secondary-active: adaptive-color($color-btn-secondary-hover, 10%);
 $color-btn-secondary-text: color-control($color-btn-secondary);
 
-$color-btn-secondary-accent: {{ settings.color_button_bg }};
+$color-btn-secondary-accent: #006eff;
 $color-btn-secondary-accent-hover: adaptive-color($color-btn-secondary-accent, 10%);
 $color-btn-secondary-accent-active: adaptive-color($color-btn-secondary-accent-hover, 10%);
 
 // Accent color (nav and links)
-$color-accent: {{ settings.color_button_bg }};
-$color-accent-hover: darken({{ settings.color_button_bg }}, 15%);
-$color-accent-text: {{ settings.color_button_text }};
+$color-accent: #006eff;
+$color-accent-hover: darken(#006eff, 15%);
+$color-accent-text: #fff;
 
 // General colors
-$color-body-text: {{ settings.color_body_text }};
-$color-body: {{ settings.color_body_bg }};
-$color-content: {{ settings.color_content_bg }};
+$color-body-text: #666;
+$color-body: #f7f7f7;
+$color-content: #fff;
 $color-border: $color-body;
 $color-border-body-darken: darken($color-body, 10%);
-$color-heading: {{ settings.color_body_headings }};
+$color-heading: #030303;
 
 // Header and footer
-$color-header: {{ settings.color_header_bg }};
+$color-header: #fff;
 $color-header-border: adaptive-color($color-header, 5%);
-$color-header-links: {{ settings.color_header_links }};
+$color-header-links: #22262A;;
 $color-header-links-rgba: rgba($color-header-links, 0.6);
-$color-footer: {{ settings.color_footer_bg }};
-$color-footer-text: {{ settings.color_footer_text }};
-$color-footer-text-rgba: rgba({{ settings.color_footer_text }}, 0.6);
+$color-footer: #030303;
+$color-footer-text: #fff;
+$color-footer-text-rgba: rgba(#fff, 0.6);
 $color-footer-border: adaptive-color($color-footer, 5%);
 
 // Emphasized title blocks (like hero slider)
-$color-emphasized-title-bg: {{ settings.color_hero_bg }};
-$color-emphasized-title-text: {{ settings.color_hero_text }};
+$color-emphasized-title-bg: #006eff;
+$color-emphasized-title-text: #fff;
 $color-emphasized-subtitle-bg: $color-header;
 $color-emphasized-subtitle-text: $color-header-links;
 
 // Hero
-$color-hero-title-bg: {{ settings.color_hero_bg }};
-$color-hero-title-text: {{ settings.color_hero_text }};
+$color-hero-title-bg: #006eff;
+$color-hero-title-text: #fff;
 $color-hero-subtitle-bg: $color-header;
 $color-hero-subtitle-text: $color-header-links;
 $color-hero-arrows: #000;
@@ -332,85 +332,100 @@ $gutter-heading: 20px;
 $gutter-slideshow: 0.625rem; // 10px
 
 /*================ Product Grid ================*/
-{% if settings.product_vendor_enable %}
-  $product-card-height: 255px;
-{% else %}
+
   $product-card-height: 235px;
-{% endif %}
-{% if settings.product_images_padding %}
+
+
   $product-image-padding: 25px;
   $product-image-margin-bottom: 60px;
-{% else %}
-  $product-image-padding: 0;
-  $product-image-margin-bottom: 80px;
-{% endif %}
+
 
 /*================ Product slider ================*/
-{% if settings.product_images_padding %}
+
   $product-slider-padding: $gutter-site / 2;
-{% else %}
-  $product-slider-padding: 0;
-{% endif %}
+
 $product-slider-image-height: 130px;
 
 /*================ Collection Grid ================*/
 $collection-card-height: $product-card-height + $product-image-margin-bottom;
 
 /*================ Typography Variables ================*/
-{% assign accent_family = settings.type_accent_family %}
-{% assign base_family = settings.type_base_family %}
 
-{{ accent_family | font_face }}
-{{ base_family | font_face }}
 
-{%- assign base_family_bold = base_family | font_modify: 'weight', 'bolder' -%}
-{%- assign base_family_italic = base_family | font_modify: 'style', 'italic' -%}
-{%- assign base_family_bold_italic = base_family_bold | font_modify: 'style', 'italic' -%}
 
-{{ base_family_bold | font_face }}
-{{ base_family_italic | font_face }}
-{{ base_family_bold_italic | font_face }}
+@font-face {
+  font-family: "Unica One";
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/unica_one/unicaone_n4.ff60fe9bbc5f46076f2d3df4a7f5572e1a7e80a6.woff2?&hmac=3a624c0e7b51e6fd460eda7c8fd9b289c72923d665fbe99abcddad1c1f4b72dd") format("woff2"),
+       url("https://fonts.shopifycdn.com/unica_one/unicaone_n4.92a8e215168d288dd1407fd86929132c532b4f69.woff?&hmac=a1d2db3e4cdac6ccc704e32d829291dba1f1259490cb6fdeec373e06274ee479") format("woff");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/karla/karla_n4.187fb228d0a8055289c8663e90433b4a50e86848.woff2?&hmac=ffe3e015e666d2019f4e12cb37922856fae8b1ac9dbaf0a9d0d6c7aad7626a4f") format("woff2"),
+       url("https://fonts.shopifycdn.com/karla/karla_n4.24ba61101c1ba185880bec9c74d8e7cdb826ad49.woff?&hmac=78989244295ec5ecbdae9447111d9a01ae2f46d9d622aa16d6e7963fdaeb7982") format("woff");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/karla/karla_n7.e8c0eb897464ccf45d5caa70ec8c7005d0f7b1b2.woff2?&hmac=1dcb79031b83d04b4a6b25afa94e4aa8306fa63ce0ec61d8ea59502432332b95") format("woff2"),
+       url("https://fonts.shopifycdn.com/karla/karla_n7.98d31f084a84db1ace8d046ddc8faa522b144349.woff?&hmac=1eb2ce6cfec5c13b83614cf37cf557231b848e48137c9657453b24decad02a9c") format("woff");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 400;
+  font-style: italic;
+  src: url("https://fonts.shopifycdn.com/karla/karla_i4.ce8a9af821b5675e15a4785a2318ed578e68e9c9.woff2?&hmac=0c2b3dffb922b06a5ab16e23f1963025c7508df70f1a2424d8eda9f6075bfbf3") format("woff2"),
+       url("https://fonts.shopifycdn.com/karla/karla_i4.8addc6e90a0d45abd627fd1c26cd4dbae936fbbb.woff?&hmac=6008acad15ae9c8fecb7ad7220c03b7a6080b935f53112cc88c30a3fedf6039e") format("woff");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 700;
+  font-style: italic;
+  src: url("https://fonts.shopifycdn.com/karla/karla_i7.09a1f54d3edfd3142937b195898dad5acea092ce.woff2?&hmac=950e88b76da0dccc73b5e2541d3586085e76a50e7270b2ce9d4b89363cad3b33") format("woff2"),
+       url("https://fonts.shopifycdn.com/karla/karla_i7.7088df7c28e0b13b5406d1a8a5978bdb24760ab1.woff?&hmac=629cc6235ecd20c4c6b0764dd72278f6a01730681fbb8989948a0ec3e5ff4ef9") format("woff");
+}
+
 
 // Accent text
-$font-stack-accent: {{ accent_family.family }}, {{ accent_family.fallback_families }};
-$font-style-accent: {{ accent_family.style }};
-$font-weight-accent: {{ accent_family.weight }};
+$font-stack-accent: "Unica One", sans-serif;
+$font-style-accent: normal;
+$font-weight-accent: 400;
 
 // Body text
-$font-stack-body: {{ base_family.family }}, {{ base_family.fallback_families }};
-$font-style-body: {{ base_family.style }};
-$font-weight-body: {{ base_family.weight | default: 400 }};
-$font-weight-body-bold: {{ base_family_bold.weight | default: 700 }};
+$font-stack-body: Karla, sans-serif;
+$font-style-body: normal;
+$font-weight-body: 400;
+$font-weight-body-bold: 700;
 
-$font-size-base: {{ settings.type_base_size }}; // Henceforth known as 1em
-$font-size-nav: em({{ settings.type_nav_size }});
-$font-size-button: em({{ settings.type_nav_size }} - 1);
+$font-size-base: 16px; // Henceforth known as 1em
+$font-size-nav: em(24px);
+$font-size-button: em(24px - 1);
 
 // Header type settings
-{% if settings.type_accent_spacing %}
-  $type-accent-spacing: true;
-{% else %}
-  $type-accent-spacing: false;
-{% endif %}
 
-{% if settings.type_accent_transform %}
+  $type-accent-spacing: true;
+
+
+
   $type-accent-transform: true;
-{% else %}
-  $type-accent-transform: false;
-{% endif %}
+
 
 // Nav type settings
-{% if settings.type_nav_spacing %}
-  $type-nav-spacing: true;
-{% else %}
-  $type-nav-spacing: false;
-{% endif %}
 
-{% if settings.type_nav_transform %}
+  $type-nav-spacing: true;
+
+
+
   $type-nav-transform: true;
-{% else %}
-  $type-nav-transform: false;
-{% endif %}
+
 
 /*================ Z-Index ================*/
 $z-index-dropdown: 5;
@@ -1624,7 +1639,7 @@ select {
   @include prefix(appearance, none, webkit moz spec);
   background-position: right center;
   background: {
-    image: url('{{ "ico-select.svg" | asset_url }}');
+    image: url('//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ico-select.svg?v=1245925112819775442');
     repeat: no-repeat;
     position: right 10px center;
     color: transparent;
@@ -2822,7 +2837,7 @@ $slick-opacity-not-active: 0.25;
 
 // Only called once so make sure proper file is grabbed
 @function slick-image-url($url) {
-  @return url({{ "ajax-loader.gif" | asset_url }});
+  @return url(//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ajax-loader.gif?212);
 }
 
 // Unused intentionally
