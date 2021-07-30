@@ -2837,7 +2837,7 @@ $slick-opacity-not-active: 0.25;
 
 // Only called once so make sure proper file is grabbed
 @function slick-image-url($url) {
-  @return url(//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ajax-loader.gif?256);
+  @return url(//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ajax-loader.gif?260);
 }
 
 // Unused intentionally
@@ -3531,6 +3531,7 @@ input[type='search']::-webkit-search-cancel-button {
   margin: 0 auto;
   position: relative;
   list-style: none;
+  padding: 41px 78px;
 }
 
 .meganav__nav--third-level {
@@ -3595,6 +3596,13 @@ input[type='search']::-webkit-search-cancel-button {
 .meganav__link--active {
   color: $color-meganav-active-link;
   font-weight: $font-weight-body-bold;
+}
+
+.meganav__link--second-level {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 24px;
+  color: #262626;
 }
 
 /*================ Meganav product cards ================*/
