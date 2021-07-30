@@ -2837,7 +2837,7 @@ $slick-opacity-not-active: 0.25;
 
 // Only called once so make sure proper file is grabbed
 @function slick-image-url($url) {
-  @return url(//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ajax-loader.gif?228);
+  @return url(//cdn.shopify.com/s/files/1/0590/4410/2329/t/2/assets/ajax-loader.gif?252);
 }
 
 // Unused intentionally
@@ -4296,6 +4296,11 @@ shopify-payment-terms {
 
 #SiteNav.hide {
   display: block!important;
+}
+
+.main-logo {
+  position: relative;
+  z-index: 10;
 }
 
 .product__photo-wrapper {
