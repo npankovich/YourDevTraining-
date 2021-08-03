@@ -1259,15 +1259,11 @@ window.Meganav = (function() {
 
   Meganav.prototype.init = function() {
     var $openBtn = this.config.$meganavToggle;
+    console.log($openBtn)
 
-    $openBtn.on('click', $.proxy(this.requestMeganav, this));
+    $openBtn.on('mouseenter', $.proxy(function() { $('.site-nav__dropdown').addClass(this.config.activeClass) }, this));
+    $('.site-nav__dropdown').on('mouseleave', $.proxy(function() { $('.site-nav__dropdown').removeClass(this.config.activeClass) }, this));
 
-    if (this.config.closeThirdLevelOnBlur) {
-      this.config.$meganavLinkThirdLevel.on(
-        'blur',
-        $.proxy(this.closeThirdLevelMenu, this)
-      );
-    }
   };
 
   Meganav.prototype.requestMeganav = function(evt) {
@@ -1286,7 +1282,6 @@ window.Meganav = (function() {
 
     var $el = $(evt.currentTarget);
     var anotherNavIsOpen = this.config.isOpen;
-    var isThirdLevelBtn = $el.hasClass(this.config.thirdLevelClass);
 
     // The $targetedMeganav is different for the drawer and non-drawer navs
     if ($el.hasClass(this.config.drawerToggleClass)) {
@@ -1303,10 +1298,6 @@ window.Meganav = (function() {
       return;
     }
 
-    // If true, don't let multiple meganavs be open simultaneously
-    if (!isThirdLevelBtn && this.config.preventDuplicates) {
-      this.close();
-    }
 
     if ($targetedMeganav.hasClass(this.config.drawerClass)) {
       var isExpanded = $el.attr('aria-expanded') === 'true';
@@ -1377,13 +1368,9 @@ window.Meganav = (function() {
   };
 
   Meganav.prototype.open = function($el, $target, noAnimation) {
-    var isThirdLevelBtn = $el.hasClass(this.config.thirdLevelClass);
+    console.log($el , $target)
 
     $target.addClass(this.config.activeClass);
-
-    if (isThirdLevelBtn) {
-      this.toggleSubNav($el, $target);
-    }
 
     // Add class to override animation - CSS determined
     if (noAnimation) {

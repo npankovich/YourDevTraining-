@@ -23,7 +23,7 @@
 {% endif %}
 
 {% assign max_columns = 5 %}
-{% assign links_per_column = 7 %}
+{% assign links_per_column = 5 %}
 {% assign max_links = max_columns | times: links_per_column %}
 
 {% if display_products == false and link.links.size > max_links %}
@@ -98,7 +98,7 @@
 
           <a href="{{ childlink_url }}" class="meganav__link meganav__link--second-level meganav__link-toggle site-nav__link-toggle meganav__link--has-list{% if childlink.active %} meganav__link--active{% endif %}"  id="SiteNavLabel-{{ grandchild_list_handle }}" aria-controls="SiteNavLinklist-{{ grandchild_list_handle }}" aria-expanded="false"{% if childlink.active %} aria-current="page"{% endif %}>
             {{ childlink.title | escape }}
-            {% include 'icon-arrow-right' %}
+            <!-- {% include 'icon-arrow-right' %} -->
           </a>
 
           <div class="site-nav__dropdown site-nav__dropdown--third-level {% if link.links.size > childlink.links.size %} site-nav__dropdown--full-height{% endif %}{% if display_title == true %} meganav__list--offset{% endif %}"
